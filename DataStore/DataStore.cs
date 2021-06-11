@@ -35,19 +35,18 @@ namespace DataStore
             
             Console.WriteLine("csvFilePath '" + csvFilePath + "'");
 
-            var shouldReplaceFile = checkIfOlderThanNineDays(csvFilePath);
+            var fileAge = FindAgeOfTheFileInDays(csvFilePath);
 
             // File.Delete(appDataDirPath + "\\ariregister_csv.zip");
         }
 
-        private bool checkIfOlderThanNineDays(string filePath)
+        private int FindAgeOfTheFileInDays(string filePath)
         {
-            var result = false;
+            var dateFromFilePath = Path.GetFileNameWithoutExtension(filePath).Split("_").LastOrDefault();
+            var date = DateTime.Parse(dateFromFilePath!);
 
-            Console.WriteLine(Path.GetFileName(filePath));
-            
-            return result;
+            return DateTime.Now.Subtract(date).Days;
         }
-
+        
     }
 }
