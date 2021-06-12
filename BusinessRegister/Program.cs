@@ -1,15 +1,15 @@
-﻿using System;
-using DataStore;
+﻿using System.Threading.Tasks;
+
 
 namespace BusinessRegister
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             DataStore.DataStore dataStore = new();
-            
-            dataStore.GetFile();
+
+            await dataStore.GetFile();
         }
     }
 }
