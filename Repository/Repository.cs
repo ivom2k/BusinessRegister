@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,8 +24,6 @@ namespace Repository
                     Console.WriteLine(await streamReader.ReadLineAsync());
                 }
                 
-                
-
             }
             catch (Exception e)
             {

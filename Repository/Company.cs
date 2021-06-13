@@ -12,14 +12,8 @@ namespace Repository
         private string _status { get; set; } = default!; // ettevotja_staatus
         private string _statusString { get; set; } = default!; // ettevotja_staatus_tekstina
         private DateTime _firstEntry { get; set; } = default!; // ettevotja_esmakande_kpv
-        private string _address { get; set; } = default!; // ettevotja_aadress
-        // asukoht_ettevotja_aadressis
-        // asukoha_ehak_kood
-        // asukoha_ehak_tekstina
+        private string _fullAddress { get; set; } // ads_normaliseeritud_taisaadress
         private int _postalCode { get; set; } = default!; // indeks_ettevotja_aadressis
-        // ads_adr_id
-        // ads_ads_oid
-        // ads_normaliseeritud_taisaadress
         private string _link { get; set; } = default!; // teabesysteemi_link
     }
 }
