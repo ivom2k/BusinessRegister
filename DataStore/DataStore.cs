@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -20,28 +21,18 @@ namespace DataStore
             var zipFilePath = Path.Combine(appDataDirPath, "ariregister_csv.zip");
             // var zipFileExistsAlready = File.Exists(zipFilePath);
 
-            if (string.IsNullOrEmpty(csvFilePath)) // Searching for extracted file
+            if (string.IsNullOrEmpty(csvFilePath)) // Searching for extracted file. If string is empty go to downloading zip
             {
                 await DownloadFile(zipFilePath); // Downloading the zip to %AppData%
+                extractFile(zipFilePath, appDataDirPath); // Extract the archive
+                deleteFile(zipFilePath); // Delete the archive
+            } else if (File.Exists(csvFilePath))
+            {
+                var fileAge = FindAgeOfTheFileInDays(csvFilePath);
+
+                Console.WriteLine("fileAge " + fileAge);
             }
-
-            // Console.WriteLine("file exists? " + zipFileExistsAlready);
-            //
-            // Console.WriteLine(appDataDirPath);
-            // Console.WriteLine("appDataDir exists? " + Directory.Exists(appDataDirPath));
-            //
-            // Console.WriteLine("downloading file");
-            // Console.WriteLine("file exists? " + zipFileExistsAlready);
-
-            // ZipFile.ExtractToDirectory(zipFilePath, appDataDirPath);
-
-            // Console.WriteLine("csvFilePath '" + csvFilePath + "'");
-
-            // var fileAge = FindAgeOfTheFileInDays(csvFilePath);
-
-            // Console.WriteLine("fileAge " + fileAge);
-
-            // File.Delete(appDataDirPath + "\\ariregister_csv.zip");
+            
         }
 
         private int FindAgeOfTheFileInDays(string filePath)
@@ -102,6 +93,30 @@ namespace DataStore
             catch (NotSupportedException e)
             {
                 throw new ArgumentException("Writing or reading is not supported! ", e);
+            }
+        }
+
+        private void extractFile(string filePath, string directory)
+        {
+            try
+            {
+                ZipFile.ExtractToDirectory(filePath, directory);
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException("Extracting failed! ", nameof(filePath), e);
+            }
+        }
+
+        private void deleteFile(string filePath)
+        {
+            try
+            {
+                File.Delete(filePath);
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException("Deleting failed! ", nameof(filePath), e);
             }
         }
     }
