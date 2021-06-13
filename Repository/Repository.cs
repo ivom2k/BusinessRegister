@@ -16,6 +16,10 @@ namespace Repository
 
         public async Task ReadFile()
         {
+            var separator = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ListSeparator;
+            Console.WriteLine("filePath: " + _filePath);
+            Console.WriteLine("separator " + separator);
+            
             try
             {
                 using StreamReader streamReader = new StreamReader(_filePath, Encoding.UTF8);

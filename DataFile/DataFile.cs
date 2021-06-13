@@ -24,6 +24,7 @@ namespace DataFile
                 await DownloadFile(zipFilePath);
                 ExtractFile(zipFilePath, appDataDirPath);
                 DeleteFile(zipFilePath);
+                csvFilePath = Directory.EnumerateFiles(appDataDirPath).FirstOrDefault(f => f.Contains(FilePrefix));
             }
             else if (File.Exists(csvFilePath))
             {
