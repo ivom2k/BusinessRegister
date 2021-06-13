@@ -12,7 +12,7 @@ namespace Repository
         private string _status { get; set; } = default!; // ettevotja_staatus
         private string _statusString { get; set; } = default!; // ettevotja_staatus_tekstina
         private DateTime _firstEntry { get; set; } = default!; // ettevotja_esmakande_kpv
-        private string _fullAddress { get; set; } // ads_normaliseeritud_taisaadress
+        private string _fullAddress { get; set; } = default!; // ads_normaliseeritud_taisaadress
         private int _postalCode { get; set; } = default!; // indeks_ettevotja_aadressis
         private string _link { get; set; } = default!; // teabesysteemi_link
     }
