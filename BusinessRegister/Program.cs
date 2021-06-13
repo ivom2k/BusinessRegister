@@ -8,8 +8,9 @@ namespace BusinessRegister
     {
         private static async Task Main(string[] args)
         {
-            await DataFile.DataFile.GetFile();
-
+            var filePath = await DataFile.DataFile.GetFile();
+            var repository = new Repository.Repository(filePath);
+            repository.ReadFile();
         }
     }
 }

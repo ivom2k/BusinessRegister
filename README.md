@@ -9,7 +9,7 @@
 | Repository | DTO and repository for information access |
 
 - [x] Get the file, save it, extract it
-- [ ] Remove exceptions so the program keeps working after errors
+- [ ] Remove exceptions so the program keeps working and uses the current .csv file
 - [ ] Log occuring errors so user knows what's up
 - [ ] Read from it
 - [ ] Create repository and DTO

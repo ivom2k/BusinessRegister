@@ -13,7 +13,7 @@ namespace DataFile
         private const string Url = "https://avaandmed.rik.ee/andmed/ARIREGISTER/ariregister_csv.zip";
         private const string FilePrefix = "ettevotja_rekvisiidid";
 
-        public static async Task GetFile()
+        public static async Task<string> GetFile()
         {
             var appDataDirPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var csvFilePath = Directory.EnumerateFiles(appDataDirPath).FirstOrDefault(f => f.Contains(FilePrefix));
@@ -29,13 +29,15 @@ namespace DataFile
             {
                 if (FindAgeOfTheFileInDays(csvFilePath) > 7)
                 {
-                    Console.WriteLine("age: " + FindAgeOfTheFileInDays(csvFilePath));
                     await DownloadFile(zipFilePath);
                     ExtractFile(zipFilePath, appDataDirPath);
                     DeleteFile(zipFilePath);
                     DeleteFile(csvFilePath);
+                    csvFilePath = Directory.EnumerateFiles(appDataDirPath).FirstOrDefault(f => f.Contains(FilePrefix));
                 }
             }
+
+            return csvFilePath!;
         }
 
         private static int FindAgeOfTheFileInDays(string filePath)
