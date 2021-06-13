@@ -6,8 +6,8 @@ Hobby project
 
 | Project | Purpose |
 | ------- | ------- |
-| BusinessRegister | Run the thing |
-| DataFile | Download .csv from OpenData |
+| [BusinessRegister](BusinessRegister/Program.cs) | Run the thing |
+| [DataFile](DataFile/DataFile.cs) | Download .csv from OpenData |
 | Repository | [DTO](Repository/Company.cs) and [Repository](Repository/Repository.cs) for information access |
 
 - [x] Get the file, save it, extract it

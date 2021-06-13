@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 
 
-
 namespace BusinessRegister
 {
     internal class Program
