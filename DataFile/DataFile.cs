@@ -65,9 +65,9 @@ namespace DataFile
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStreamAsync();
+                    await using var content = await response.Content.ReadAsStreamAsync();
 
-                    FileStream fs = new FileStream(savePath, FileMode.Create);
+                    await using FileStream fs = new FileStream(savePath, FileMode.Create);
                     await CopyContent(content, fs);
                 }
             }

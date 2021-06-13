@@ -10,7 +10,7 @@ namespace BusinessRegister
         {
             var filePath = await DataFile.DataFile.GetFile();
             var repository = new Repository.Repository(filePath);
-            repository.ReadFile();
+            await repository.ReadFile();
         }
     }
 }
