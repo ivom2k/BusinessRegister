@@ -7,9 +7,8 @@ namespace BusinessRegister
     {
         private static async Task Main(string[] args)
         {
-            DataStore.DataStore dataStore = new();
-
-            await dataStore.GetFile();
+            await DataStore.DataFile.GetFile();
+            
         }
     }
 }

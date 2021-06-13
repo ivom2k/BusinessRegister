@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DataStore\DataStore.csproj" />
+      <ProjectReference Include="..\DataFile\DataFile.csproj" />
     </ItemGroup>
 
 </Project>
