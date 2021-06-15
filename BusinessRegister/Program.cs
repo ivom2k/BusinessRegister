@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 
 namespace BusinessRegister
@@ -9,7 +10,8 @@ namespace BusinessRegister
         {
             var filePath = await DataFile.DataFile.GetFile();
             var repository = new Repository.Repository(filePath);
-            await repository.ReadFile();
+            await repository.ProcessLinesAsync();
+            // await repository.ReadFile();
         }
     }
 }
