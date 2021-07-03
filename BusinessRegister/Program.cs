@@ -11,7 +11,9 @@ namespace BusinessRegister
             var filePath = await DataFile.DataFile.GetFile();
             var repository = new Repository.Repository(filePath);
             await repository.ProcessLinesAsync();
-            // await repository.ReadFile();
+
+            Console.WriteLine(repository.lines[1]);
+
         }
     }
 }

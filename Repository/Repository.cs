@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Buffers;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Pipelines;
 using System.Text;
@@ -10,16 +12,31 @@ namespace Repository
     public class Repository
     {
         private readonly string _filePath;
+        
 
         public Repository(string filePath)
         {
             _filePath = filePath;
         }
 
+        public Company GetCompany(string companyCode)
+        {
+            
+            
+            return new Company();
+        }
+
+        public List<Company> GetCompanies(string company)
+        {
+
+            return new List<Company>();
+        }
+
         public async Task<Task> ProcessLinesAsync()
         {
             var pipe = new Pipe();
             await using var fileStream = File.OpenRead(_filePath);
+            
             Task writing = FillPipeAsync(fileStream, pipe.Writer);
             Task reading = ReadPipeAsync(pipe.Reader);
             
@@ -106,7 +123,7 @@ namespace Repository
                 {
                     // Look for a EOL in the buffer
                     position = buffer.PositionOf((byte)'\n');
-
+                    
                     if (position != null)
                     {
                         ProcessLine(buffer.Slice(0, position.Value));
@@ -118,6 +135,7 @@ namespace Repository
                 } while (position != null);
                 
                 // Tell the PipeReader how much of the buffer we have consumed
+                // AdvanceTo tells the PipeReader that these buffers are no longer required by the reader so they can be discarded
                 reader.AdvanceTo(buffer.Start, buffer.End);
                 
                 // Stop reading if there's no more data coming
@@ -132,8 +150,8 @@ namespace Repository
         
         private void ProcessLine(ReadOnlySequence<byte> sequence)
         {
-            var line = Encoding.UTF8.GetString(sequence);
-            Console.WriteLine(line);
+            
+            Encoding.UTF8.GetString(sequence);
         }
         
     }
